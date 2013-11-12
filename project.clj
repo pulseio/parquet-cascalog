@@ -1,14 +1,17 @@
-(defproject pail-test "0.1.0-SNAPSHOT"
-  :description "FIXME: write description"
+(defproject io.pulse/parquet-cascalog "0.1.0"
+  :description "Scheme for sinking cascalog jobs into parquet"
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.5.1"]
-                 [backtype/dfs-datastores "1.2.0"]
                  [cascalog "2.0.0"]
-                 [cascading/cascading-core "2.2.0"]
-                 [backtype/dfs-datastores-cascading "1.3.0"
-                  :exclusions [cascading/cascading-core cascading/cascading-hadoop]]]
-  :aot [pail-test.core]
+                 [com.twitter/parquet-column "1.2.4"]
+                 [com.twitter/parquet-hadoop "1.2.4"]
+                 [cascading/cascading-core "2.2.0"]]
+  :aot [parquet-cascalog.convert]
+  :java-source-paths ["java-src"]
   :repositories [["conjars" "http://conjars.org/repo"]]
-  :profiles {:dev {:dependencies [[org.apache.hadoop/hadoop-core "1.1.2"]]}})
+  :profiles {:dev {:dependencies [[org.apache.hadoop/hadoop-core "1.1.2"]
+                                  [javax.jdo/jdo2-api "2.3-eb"]
+                                  [org.apache.hive/hive-metastore "0.10.0"
+                                   :exclusions [javax.jdo/jdo2-api]]]}})
