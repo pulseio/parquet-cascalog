@@ -2,9 +2,7 @@
   (:import [parquet.schema
             MessageType 
             PrimitiveType PrimitiveType$PrimitiveTypeName
-            Type$Repetition]
-           org.apache.hadoop.hive.metastore.HiveMetaStoreClient
-           org.apache.hadoop.hive.conf.HiveConf)
+            Type$Repetition])
   (:gen-class
    :methods [^{:static true} [parquetify [String Object] parquet.schema.MessageType]]))
 
