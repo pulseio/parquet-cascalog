@@ -1,6 +1,7 @@
 # parquet-cascalog
 
-Taps for dumping cascalog queries into parquet form.
+Taps for dumping cascalog queries into parquet form.  Can only be
+used as a sink at the moment.
 
 ## Usage
 
