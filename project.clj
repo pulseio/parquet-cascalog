@@ -8,8 +8,10 @@
                  [com.twitter/parquet-column "1.2.4"]
                  [com.twitter/parquet-hadoop "1.2.4"]
                  [cascading/cascading-core "2.2.0"]]
-  :aot [parquet-cascalog.convert]
+  :prep-tasks ["compile" "javac"]
+  :aliases {"build" ["do" "compile," "javac"]}
   :java-source-paths ["java-src"]
+  :aot [parquet-cascalog.convert]
   :repositories [["conjars" "http://conjars.org/repo"]]
   :profiles {:dev {:dependencies [[org.apache.hadoop/hadoop-core "1.1.2"]
                                   [javax.jdo/jdo2-api "2.3-eb"]
