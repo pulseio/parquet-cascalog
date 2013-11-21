@@ -16,7 +16,7 @@ used as a sink at the moment.
 
 It is important to note that the field names supplied in the schema
 supplied to the tap thing actually have to correspond with the names
-of your output variables, sans question-marks.
+of your output variables.
 
 Any output variables not used in the schema can still be used for other
 stuff, for example, as inputs to :templatefields for partitioning your
