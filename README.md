@@ -5,6 +5,7 @@ used as a sink at the moment.
 
 ## Usage
 
+```
 (use 'cascalog.api)
 (require '[parquet-cascalog.tap :as parquet])
 
@@ -13,6 +14,7 @@ used as a sink at the moment.
       "/tmp/foo-path")
      [?foo ?bar ?baz ?quux]
      (my awsome query ...))
+```
 
 It is important to note that the field names supplied in the schema
 supplied to the tap thing actually have to correspond with the names
