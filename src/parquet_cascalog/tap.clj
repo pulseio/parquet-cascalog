@@ -6,7 +6,7 @@
    defined by the supplied field descriptions.  The fields
    argument should be of the form:
 
-     fields     ::= [[<field-name> <field-type>] * ...]
+     fields     ::= [[<field-name> <field-type> <column-name>?] * ...]
      field-name ::= <string>
      field-type ::= real | double | int | bigint | string"
   [fields path & options]

@@ -15,7 +15,7 @@
   (let [hive (HiveMetaStoreClient. (HiveConf.))]
     (->> (.. hive (getTable hive-db hive-table) (getSd) (getCols))
          (map (juxt (memfn getName) (memfn getType)))
-         (map (fn [[name type]] [(str "?" name) type]))
+         (map (fn [[name type]] [(str "?" name) type name]))
          pr-str)))
 
 (defn hfs-hive-parquet

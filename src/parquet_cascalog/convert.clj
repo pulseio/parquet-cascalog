@@ -18,9 +18,9 @@ Returns a parquet.schema.MessageType instance."
          "string" PrimitiveType$PrimitiveTypeName/BINARY}]
     (MessageType.
      msg-name
-     (map (fn [[field-name type]]
+     (map (fn [[field-name type column-name]]
             (PrimitiveType. 
              Type$Repetition/REQUIRED
              (type-mapping type)
-             field-name))
+             (or column-name field-name)))
           fields))))
