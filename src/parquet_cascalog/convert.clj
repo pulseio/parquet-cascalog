@@ -14,6 +14,7 @@ Returns a parquet.schema.MessageType instance."
         {"double" PrimitiveType$PrimitiveTypeName/DOUBLE
          "real" PrimitiveType$PrimitiveTypeName/DOUBLE
          "int" PrimitiveType$PrimitiveTypeName/INT32
+         "integer" PrimitiveType$PrimitiveTypeName/INT32
          "bigint" PrimitiveType$PrimitiveTypeName/INT64
          "string" PrimitiveType$PrimitiveTypeName/BINARY}]
     (MessageType.

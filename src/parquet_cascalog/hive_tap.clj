@@ -1,4 +1,5 @@
 (ns parquet-cascalog.hive-tap
+  "Don't import this namespace unless you've got Hives."
   (:import org.apache.hadoop.hive.metastore.HiveMetaStoreClient
            org.apache.hadoop.hive.conf.HiveConf)
   (:use parquet-cascalog.tap)
@@ -26,6 +27,7 @@
 
    Also see get-hive-fields."
   [hive-db hive-table path & hfs-options]
-  (hfs-parquet
-   (get-hive-fields hive-db hive-table)
-   path hfs-options))
+  (apply hfs-parquet
+         hive-table
+         (get-hive-fields hive-db hive-table)
+         path hfs-options))

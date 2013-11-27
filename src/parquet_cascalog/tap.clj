@@ -9,8 +9,8 @@
      fields     ::= [[<field-name> <field-type> <column-name>?] * ...]
      field-name ::= <string>
      field-type ::= real | double | int | bigint | string"
-  [fields path & options]
+  [name fields path & options]
   (apply tap/hfs-tap
          (io.pulse.parquet.ParquetCascalogScheme.
-          (pr-str fields) "")
+          (pr-str fields) name)
          path options))

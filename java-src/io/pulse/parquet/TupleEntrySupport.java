@@ -15,6 +15,7 @@ public class TupleEntrySupport extends WriteSupport<TupleEntry> {
   public static final String FIELDS = "io.pulse.fields";
   public static final String TABLE_NAME = "io.pulse.table_name";
   private MessageType schema;
+  private List defs;
   private List<ColumnDescriptor> columns;
   private RecordConsumer rc;
 
@@ -26,8 +27,8 @@ public class TupleEntrySupport extends WriteSupport<TupleEntry> {
 
   @Override
   public parquet.hadoop.api.WriteSupport.WriteContext init(Configuration conf) {
-    schema = parquet_cascalog.convert.parquetify(conf.get(TABLE_NAME),
-                                                 clojure.lang.RT.readString(conf.get(FIELDS)));
+    defs = (java.util.List) clojure.lang.RT.readString(conf.get(FIELDS));
+    schema = parquet_cascalog.convert.parquetify(conf.get(TABLE_NAME), defs);
     columns = schema.getColumns();
     return new WriteContext(schema, new java.util.HashMap());
   }
@@ -44,7 +45,8 @@ public class TupleEntrySupport extends WriteSupport<TupleEntry> {
     for (i=0; i<columns.size(); i++) {
       ColumnDescriptor column = columns.get(i);
       String fieldName = column.getPath()[0];
-      String tupleField = fieldName;
+      clojure.lang.PersistentVector def = (clojure.lang.PersistentVector) defs.get(i);
+      String tupleField = (String) def.get(0);
 
       rc.startField(fieldName, i);
       switch (column.getType()) {
