@@ -11,7 +11,16 @@
    corresponding to said hive columns will be non-nullable fields.
 
    Also - will not grab partition columns.  Those need to be handled
-   separately."
+   separately.
+
+   If passed a map in the special-cases argument of the form
+
+     {\"foo_column\" foo-function}
+
+   when encountering the hive column \"foo_column\", foo-function will
+   be called like (foo-function hive-column-name hive-column-type) and
+   is expected to return a vector [cascalog-var type parquet-column-name].
+"
   [hive-db hive-table special-cases]
   (let [hive (HiveMetaStoreClient. (HiveConf.))]
     (->> (.. hive (getTable hive-db hive-table) (getSd) (getCols))
