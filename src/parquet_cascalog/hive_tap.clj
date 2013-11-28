@@ -12,11 +12,14 @@
 
    Also - will not grab partition columns.  Those need to be handled
    separately."
-  [hive-db hive-table]
+  [hive-db hive-table special-cases]
   (let [hive (HiveMetaStoreClient. (HiveConf.))]
     (->> (.. hive (getTable hive-db hive-table) (getSd) (getCols))
          (map (juxt (memfn getName) (memfn getType)))
-         (map (fn [[name type]] [(str "?" name) type name]))
+         (map (fn [[name type]]
+                (if-let [f (and special-cases (special-cases name))]
+                  (f name type)
+                  [(str "?" name) type name])))
          pr-str)))
 
 (defn hfs-hive-parquet
@@ -26,8 +29,9 @@
    cascalog.cascading.tap/hfs-tap.
 
    Also see get-hive-fields."
-  [hive-db hive-table path & hfs-options]
+  [hive-db hive-table path & 
+   {:keys [special-cases] :as hfs-options}]
   (apply hfs-parquet
          hive-table
-         (get-hive-fields hive-db hive-table)
-         path hfs-options))
+         (get-hive-fields hive-db hive-table special-cases)
+         path (mapcat identity (dissoc hfs-options :special-cases))))
