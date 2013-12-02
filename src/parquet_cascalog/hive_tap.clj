@@ -28,8 +28,7 @@
          (map (fn [[name type]]
                 (if-let [f (and special-cases (special-cases name))]
                   (f name type)
-                  [(str "?" name) type name])))
-         pr-str)))
+                  [(str "?" name) type name]))))))
 
 (defn hfs-hive-parquet
   "Creates an HFS tap that will output to a parquet schema
