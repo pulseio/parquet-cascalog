@@ -63,7 +63,7 @@ public class TupleEntrySupport extends WriteSupport<TupleEntry> {
         rc.addLong(record.getLong(tupleField));
         break;
       case BINARY:
-        rc.addBinary(Binary.fromByteArray(record.getString(tupleField).getBytes()));
+        rc.addBinary(Binary.fromByteArray(record.getString(tupleField).getBytes("UTF-8")));
         break;
       default:
         break;
