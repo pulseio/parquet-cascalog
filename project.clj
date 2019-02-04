@@ -12,7 +12,7 @@
   :aliases {"build" ["do" "compile," "javac"]}
   :java-source-paths ["java-src"]
   :aot [parquet-cascalog.convert]
-  :repositories [["conjars" "http://conjars.org/repo"]]
+  :repositories [["conjars" "https://conjars.org/repo"]]
   :profiles {:dev {:dependencies [[org.apache.hadoop/hadoop-core "1.1.2"]
                                   [javax.jdo/jdo2-api "2.3-eb"]
                                   [org.apache.hive/hive-metastore "0.10.0"
