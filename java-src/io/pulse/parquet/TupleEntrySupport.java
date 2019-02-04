@@ -1,5 +1,6 @@
 package io.pulse.parquet;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import cascading.tuple.TupleEntry;
 import org.apache.hadoop.conf.Configuration;
@@ -62,9 +63,15 @@ public class TupleEntrySupport extends WriteSupport<TupleEntry> {
       case INT64:
         rc.addLong(record.getLong(tupleField));
         break;
-      case BINARY:
-        rc.addBinary(Binary.fromByteArray(record.getString(tupleField).getBytes("UTF-8")));
-        break;
+      case BINARY: {
+        try {
+          rc.addBinary(Binary.fromByteArray(record.getString(tupleField).getBytes("UTF-8")));
+          break;
+        } catch (UnsupportedEncodingException e) {
+          // Ignore. Doesn't compile otherwise.
+          break;
+        }
+      }
       default:
         break;
       }
