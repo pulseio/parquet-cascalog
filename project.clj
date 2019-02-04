@@ -15,5 +15,5 @@
   :repositories [["conjars" "https://conjars.org/repo"]]
   :profiles {:dev {:dependencies [[org.apache.hadoop/hadoop-core "1.1.2"]
                                   [javax.jdo/jdo2-api "2.3-eb"]
-                                  [org.apache.hive/hive-metastore "0.10.0"
+                                  [org.apache.hive/hive-metastore "0.12.0"
                                    :exclusions [javax.jdo/jdo2-api]]]}})
